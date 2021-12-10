@@ -1,5 +1,16 @@
 version: '3.3'
+
+volumes:
+  media_value:
+  static_value:
+
 services:
+  db:
+    image: postgres:13.4
+    volumes:
+      - /var/lib/postgresql/data/
+    env_file:
+      - ./.env
 
   frontend:
     build:
@@ -7,6 +18,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ../frontend/:/app/result_build/
+
   nginx:
     image: nginx:1.19.3
     ports:
@@ -16,3 +28,17 @@ services:
       - ../frontend/build:/usr/share/nginx/html/
       - ../docs/redoc.html:/usr/share/nginx/html/api/docs/redoc.html
       - ../docs/openapi-schema.yml:/usr/share/nginx/html/api/docs/openapi-schema.yml
+      - media_value:/var/html/media/
+      - static_value:/var/html/static/
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    volumes:
+      - media_value:/code/media/
+      - static_value:/code/static/
+    env_file:
+      - ./.env
