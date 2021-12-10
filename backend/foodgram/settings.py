@@ -4,13 +4,13 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
-
+PASSWORD_VALIDATE = 'django.contrib.auth.password_validation'
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = False
 
 if DEBUG:
-    SECRET_KEY = "debug"
+    SECRET_KEY = 'debuging'
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
 
@@ -78,16 +78,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': f'{PASSWORD_VALIDATE}.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': f'{PASSWORD_VALIDATE}.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': f'{PASSWORD_VALIDATE}.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': f'{PASSWORD_VALIDATE}.NumericPasswordValidator',
     },
 ]
 
