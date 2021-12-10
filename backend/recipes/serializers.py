@@ -3,10 +3,11 @@ from django.db.models import F
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 from rest_framework.serializers import ValidationError
+
 from users.serializers import CustomUserSerializer
 
-from .models import (Ingredient, Tag, Recipe, RecipeIngredients,
-                     Favorite, ShoppingList)
+from .models import (Favorite, Ingredient, Recipe, RecipeIngredients,
+                     ShoppingList, Tag)
 
 User = get_user_model()
 
@@ -184,7 +185,7 @@ class ShoppingListSerializer(serializers.ModelSerializer):
         recipe_id = data['recipe'].id
         if ShoppingList.objects.filter(user=user,
                                        recipe__id=recipe_id).exists():
-            raise ValidationError('Рецепт уже добавлен в список покупок')
+            raise ValidationError('Рецепт уже есть в списке покупок')
         return data
 
     def to_representation(self, instance):

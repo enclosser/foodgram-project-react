@@ -1,6 +1,10 @@
 import os
 from pathlib import Path
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = False
@@ -8,7 +12,7 @@ DEBUG = False
 if DEBUG:
     SECRET_KEY = "debug"
 else:
-    SECRET_KEY = os.getenv('SECRET_KEY', default='django-insecure-4e-6h1o^28f3u4rma(vj_99*p!j9g=1ojao_f53^iyqx0u_x7n')
+    SECRET_KEY = os.getenv('SECRET_KEY')
 
 ALLOWED_HOSTS = ['*']
 
@@ -62,12 +66,12 @@ WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('ENGINE', default='django.db.backends.postgresql'),
-        'NAME': os.getenv('DB_NAME', default='postgres'),
-        'USER': os.getenv('DB_USER', default='postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', default='postgres'),
-        'HOST': os.getenv('DB_HOST', default='db'),
-        'PORT': os.getenv('DB_PORT', default=5432)
+        'ENGINE': os.getenv('DB_ENGINE'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT')
     }
 }
 
@@ -128,7 +132,6 @@ DJOSER = {
            'user': ['rest_framework.permissions.IsAuthenticated'],
            'user_list': ['rest_framework.permissions.AllowAny']
        },
-       #'PASSWORD_RESET_CONFIRM_URL': 'password/reset/confirm/{uid}/{token}',
    }
 
 STATIC_URL = '/static/'

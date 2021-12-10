@@ -1,11 +1,10 @@
 from django.contrib.auth import get_user_model
-from rest_framework import serializers
 from djoser.serializers import UserCreateSerializer, UserSerializer
+from rest_framework import serializers
 
 from recipes.models import Recipe
 
 from .models import Follow
-
 
 User = get_user_model()
 
@@ -46,7 +45,7 @@ class FollowSerializer(serializers.ModelSerializer):
         if Follow.objects.filter(user=user,
                                  following__id=following_id).exists():
             raise serializers.ValidationError(
-                    'Вы уже подписаны на этого пользователя')
+                    'Уже подписаны на этого пользователя')
         if user.id == following_id:
             raise serializers.ValidationError('Нельзя подписаться на себя')
         return data
