@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from django.core.validators import MinValueValidator
 from django.db import models
-COLOURS =(
+
+COLOURS = (
     ('#9C9C9C', 'Серый'),
     ('#FFF68F', 'Желтый'),
     ('#00FF7F', 'Зеленый'),

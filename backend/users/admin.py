@@ -26,4 +26,3 @@ admin.site.register(User, DjangoUserAdmin)
 class FollowAdmin(admin.ModelAdmin):
     list_display = ('pk', 'user', 'following')
     list_filter = ['user', 'following']
-

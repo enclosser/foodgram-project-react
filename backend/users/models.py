@@ -1,6 +1,6 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import UniqueConstraint, CheckConstraint, Q, F
 from django.db import models
+from django.db.models import CheckConstraint, Q, UniqueConstraint
 
 
 class User(AbstractUser):
