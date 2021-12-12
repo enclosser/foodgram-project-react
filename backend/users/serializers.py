@@ -20,15 +20,23 @@ class CustomUserSerializer(UserSerializer):
 
     class Meta():
         model = User
-        fields = ('id', 'email', 'username', 'first_name',
-                  'last_name', 'is_subscribed')
+        fields = (
+            'id',
+            'email',
+            'username',
+            'first_name',
+            'last_name',
+            'is_subscribed'
+        )
 
     def get_is_subscribed(self, obj):
         request = self.context.get('request')
         if not request or request.user.is_anonymous:
             return False
-        return Follow.objects.filter(user=self.context['request'].user,
-                                     following=obj).exists()
+        return Follow.objects.filter(
+            user=self.context['request'].user,
+            following=obj
+        ).exists()
 
 
 class FollowSerializer(serializers.ModelSerializer):
@@ -42,10 +50,13 @@ class FollowSerializer(serializers.ModelSerializer):
     def validate(self, data):
         user = self.context.get('request').user
         following_id = data['following'].id
-        if Follow.objects.filter(user=user,
-                                 following__id=following_id).exists():
+        if Follow.objects.filter(
+                user=user,
+                following__id=following_id
+        ).exists():
             raise serializers.ValidationError(
-                    'Уже подписаны на этого пользователя')
+                    'Уже подписаны на этого пользователя'
+            )
         if user.id == following_id:
             raise serializers.ValidationError('Нельзя подписаться на себя')
         return data
@@ -66,8 +77,16 @@ class ShowFollowSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('email', 'id', 'username', 'first_name', 'last_name',
-                  'is_subscribed', 'recipes', 'recipes_count')
+        fields = (
+            'email',
+            'id',
+            'username',
+            'first_name',
+            'last_name',
+            'is_subscribed',
+            'recipes',
+            'recipes_count'
+        )
         read_only_fields = fields
 
     def get_is_subscribed(self, obj):
@@ -84,8 +103,10 @@ class ShowFollowSerializer(serializers.ModelSerializer):
         else:
             recipes = obj.recipes.all()
         context = {'request': request}
-        return FollowingRecipesSerializers(recipes, many=True,
-                                           context=context).data
+        return FollowingRecipesSerializers(
+            recipes, many=True,
+            context=context
+        ).data
 
     def get_recipes_count(self, obj):
         return obj.recipes.count()

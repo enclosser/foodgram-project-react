@@ -5,6 +5,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 PASSWORD_VALIDATE = 'django.contrib.auth.password_validation'
+BASE = {
+    'ENGINE': os.getenv('DB_ENGINE'),
+    'NAME': os.getenv('DB_NAME'),
+    'USER': os.getenv('POSTGRES_USER'),
+    'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
+    'HOST': os.getenv('DB_HOST'),
+    'PORT': os.getenv('DB_PORT')
+}
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 DEBUG = False
@@ -14,7 +22,7 @@ if DEBUG:
 else:
     SECRET_KEY = os.getenv('SECRET_KEY')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS').split(',')
 
 
 INSTALLED_APPS = [
@@ -66,12 +74,12 @@ WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': os.getenv('DB_ENGINE'),
-        'NAME': os.getenv('DB_NAME'),
-        'USER': os.getenv('POSTGRES_USER'),
-        'PASSWORD': os.getenv('POSTGRES_PASSWORD'),
-        'HOST': os.getenv('DB_HOST'),
-        'PORT': os.getenv('DB_PORT')
+        'ENGINE': BASE['ENGINE'],
+        'NAME': BASE['NAME'],
+        'USER': BASE['USER'],
+        'PASSWORD': BASE['PASSWORD'],
+        'HOST': BASE['HOST'],
+        'PORT': BASE['PORT']
     }
 }
 

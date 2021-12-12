@@ -8,19 +8,13 @@ from rest_framework.response import Response
 from foodgram.pagination import CustomPageNumberPaginator
 
 from .filters import IngredientsFilter, RecipeFilter
+from .mixins import RetriveAndListViewSet
 from .models import (Favorite, Ingredient, Recipe, RecipeIngredients,
                      ShoppingList, Tag)
 from .permissions import IsAuthorOrAdmin
 from .serializers import (AddRecipeSerializer, FavouriteSerializer,
                           IngredientsSerializer, ShoppingListSerializer,
                           ShowRecipeFullSerializer, TagsSerializer)
-
-
-class RetriveAndListViewSet(
-        mixins.ListModelMixin,
-        mixins.RetrieveModelMixin,
-        viewsets.GenericViewSet):
-    pass
 
 
 class IngredientsViewSet(RetriveAndListViewSet):
@@ -55,8 +49,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
     @action(detail=True, permission_classes=[IsAuthorOrAdmin])
     def favorite(self, request, pk):
         data = {'user': request.user.id, 'recipe': pk}
-        serializer = FavouriteSerializer(data=data,
-                                         context={'request': request})
+        serializer = FavouriteSerializer(
+            data=data,
+            context={'request': request}
+        )
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -72,8 +68,10 @@ class RecipeViewSet(viewsets.ModelViewSet):
     @action(detail=True, permission_classes=[IsAuthorOrAdmin])
     def shopping_cart(self, request, pk):
         data = {'user': request.user.id, 'recipe': pk}
-        serializer = ShoppingListSerializer(data=data,
-                                            context={'request': request})
+        serializer = ShoppingListSerializer(
+            data=data,
+            context={'request': request}
+        )
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
@@ -82,8 +80,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
     def delete_shopping_cart(self, request, pk):
         user = request.user
         recipe = get_object_or_404(Recipe, id=pk)
-        shopping_list = get_object_or_404(ShoppingList,
-                                          user=user, recipe=recipe)
+        shopping_list = get_object_or_404(
+            ShoppingList,
+            user=user,
+            recipe=recipe
+        )
         shopping_list.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
@@ -111,8 +112,10 @@ def get_ingredients_list(recipes_list):
                 ingredients_dict[name]['amount'] += amount
     to_buy = []
     for item in ingredients_dict:
-        to_buy.append(f'{item} - {ingredients_dict[item]["amount"]} '
-                      f'{ingredients_dict[item]["measurement_unit"]} \n')
+        to_buy.append(
+            f'{item} - {ingredients_dict[item]["amount"]} '
+            f'{ingredients_dict[item]["measurement_unit"]} \n'
+        )
     return to_buy
 
 
