@@ -52,6 +52,12 @@ sudo docker-compose exec backend python manage.py createsuperuser
 ```
 Проект будет доступен по адресу http://localhost/
 
+##Для работы с workflow требуется добавить в Secrets Github переменные окружения:
+```
+DOCKER_PASSWORD=<пароль от DockerHub>
+DOCKER_USERNAME=<имя пользователя DockerHub>
+```
+
 ##Технологии
 В ходе разработки использованы технологии
 
