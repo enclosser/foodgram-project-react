@@ -54,7 +54,7 @@ class FollowSerializer(serializers.ModelSerializer):
                 following__id=following_id
         ).exists():
             raise serializers.ValidationError(
-                    'Уже подписаны на этого пользователя'
+                'Уже подписаны на этого пользователя'
             )
         if user.id == following_id:
             raise serializers.ValidationError('Нельзя подписаться на себя')
