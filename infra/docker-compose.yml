@@ -19,7 +19,7 @@ services:
       - ./.env
 
   frontend:
-    image: marazmatik2000/foodgram_frontend
+    image: marazmatik2000/foodgram-frontend
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
