@@ -1,6 +1,7 @@
 version: '3.3'
 
 volumes:
+  postgres_data:
   media_value:
   static_value:
 
@@ -8,16 +9,28 @@ services:
   db:
     image: postgres:13.4
     volumes:
-      - /var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env
+      
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    volumes:
+      - media_value:/code/media/
+      - static_value:/code/static/
+    depends_on:
+      - db
     env_file:
       - ./.env
 
   frontend:
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: niktigerbill/foodgram_frontend
     volumes:
       - ../frontend/:/app/result_build/
+    depends_on:
+      - backend
 
   nginx:
     image: nginx:1.19.3
@@ -32,13 +45,3 @@ services:
       - static_value:/var/html/static/
     depends_on:
       - backend
-
-  backend:
-    build:
-      context: ../backend
-      dockerfile: Dockerfile
-    volumes:
-      - media_value:/code/media/
-      - static_value:/code/static/
-    env_file:
-      - ./.env
