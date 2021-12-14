@@ -28,7 +28,7 @@ jobs:
         with:
           push: true
           context: backend/
-          tags: Marazmatik2000/foodgram:latest
+          tags: marazmatik2000/foodgram:latest
 
   deploy:
     if: github.ref == 'refs/heads/master'
@@ -43,7 +43,7 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           script: |
-            sudo docker pull Marazmatik2000/foodgram:latest
+            sudo docker pull marazmatik2000/foodgram:latest
             sudo docker-compose stop
             sudo docker-compose rm backend
             sudo docker-compose -f docker-compose.yml up -d
