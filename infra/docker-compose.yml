@@ -12,7 +12,7 @@ services:
   frontend:
     image: marazmatik2000/foodgram-frontend:latest
     volumes:
-      - ./frontend/:/app/result_build/
+      - ../frontend/:/app/result_build/
     depends_on:
       - db
 
