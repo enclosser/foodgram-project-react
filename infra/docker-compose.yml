@@ -10,14 +10,14 @@ services:
     restart: always
 
   frontend:
-    image: Marazmatik2000/foodgram-frontend:latest
+    image: marazmatik2000/foodgram-frontend:latest
     volumes:
       - ./frontend/:/app/result_build/
     depends_on:
       - db
 
   backend:
-    image: Marazmatik2000/foodgram:latest
+    image: marazmatik2000/foodgram:latest
     restart: always
     volumes:
       - static_value:/code/static/
