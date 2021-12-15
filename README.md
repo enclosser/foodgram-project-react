@@ -86,19 +86,19 @@ infra_db_1
     ```
     sudo docker-compose exec backend python manage.py collectstatic --noinput
     ```
-    - Применить миграции:
+    Применить миграции:
     ```
     sudo docker-compose exec backend python manage.py migrate --noinput
     ```
-    - Загрузить ингридиенты  в базу данных (необязательно):  
+    Загрузить ингридиенты  в базу данных (необязательно):  
     ```
     sudo docker-compose exec backend python manage.py loaddata fixtures/ingredients.json
     ```
-    - Создать суперпользователя Django:
+    Создать суперпользователя Django:
     ```
     sudo docker-compose exec backend python manage.py createsuperuser
     ```
-    - Проект будет доступен по вашему IP
+    Проект будет доступен по вашему IP
 
 ## Проект временно доступен по адресу http://antonov.co.vu/recipes
 
@@ -108,7 +108,7 @@ nikita@reviewer.ru
 test0101
 ```
 
-##Автор
+### Автор
 
 andreu-antonov@yandex.ru
 
