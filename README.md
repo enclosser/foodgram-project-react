@@ -75,14 +75,9 @@ ALLOWED_HOSTS=<Hosts for connect>
      - Сборка и публикация образа бекенда на DockerHub.
      - Автоматический деплой на удаленный сервер.
      - Отправка уведомления в телеграм-чат. 
-В результате будет создано 4 контейнера Docker:
-infra_nginx_1
-infra_frontend_1
-infra_backend_1
-infra_db_1
 
 * После успешной сборки на сервере выполнить команды (только после первого деплоя):
-    - Собрать статические файлы:
+    Собрать статические файлы:
     ```
     sudo docker-compose exec backend python manage.py collectstatic --noinput
     ```
@@ -109,7 +104,6 @@ test0101
 ```
 
 ### Автор
-
 andreu-antonov@yandex.ru
 
 
