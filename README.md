@@ -99,8 +99,8 @@ ALLOWED_HOSTS=<Hosts for connect>
 
 ### Вход на сайт/в админку:
 ```
-nikita@reviewer.ru
-test0101
+review@yandex.ru
+Tester01
 ```
 
 ### Автор
