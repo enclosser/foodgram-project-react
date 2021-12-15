@@ -1,3 +1,5 @@
+![example workflow](https://github.com/Andrey-oss-ai/foodgram-project-react/actions/workflows/foodgram_workflow.yml/badge.svg) 
+
 # Foodgram
 
 Foodgram - сервис для публикации рецептов, работающий как web сервис, 
