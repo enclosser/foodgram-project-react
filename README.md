@@ -100,7 +100,7 @@ ALLOWED_HOSTS=<Hosts for connect>
 ### Вход на сайт/в админку:
 ```
 review@yandex.ru
-ForReview
+ForTesting
 ```
 
 ### Автор
