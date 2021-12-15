@@ -1,9 +1,10 @@
-name: Django-app workflow
+name: foodgram workflow
 
 on:
   push:
     paths-ignore:
       - '**/README.md'
+      - '**/docker-compose.yml'
 
 jobs:
   tests:
