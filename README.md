@@ -19,6 +19,7 @@ Foodgram - сервис для публикации рецептов, работ
 
 
 [![screen-one.png](https://i.postimg.cc/DyZwM6cv/screen-one.png)](https://postimg.cc/c6pWKQj2)
+
 [![screen-second.png](https://i.postimg.cc/fbK4Znw6/screen-second.png)](https://postimg.cc/bGsVH5ST)
 ## Подготовка и запуск проекта
 ### Склонировать репозиторий на локальный пк:
