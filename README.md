@@ -17,7 +17,7 @@ Foodgram - сервис для публикации рецептов, работ
 рецепты других пользователей в избранное, подписываться на понравившихся
 авторов и формировать список покупок из рецептов.
 
-[![screen-one.png](https://i.postimg.cc/DyZwM6cv/screen-one.png)](https://postimg.cc/c6pWKQj2)
+[![image.png](https://i.postimg.cc/MGkbf7cS/image.png)](https://postimg.cc/zyjR9RSt)
 [![screen-second.png](https://i.postimg.cc/fbK4Znw6/screen-second.png)](https://postimg.cc/bGsVH5ST)
 ## Подготовка и запуск проекта
 ### Склонировать репозиторий на локальный пк:
